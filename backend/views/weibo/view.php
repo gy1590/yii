@@ -62,7 +62,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => '回复内容',
                 'attribute' => 'reply.reply_content',
             ],
-            'weibo_name',
         ],
     ]) ?>
 

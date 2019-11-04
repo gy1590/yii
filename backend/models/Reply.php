@@ -28,7 +28,7 @@ class Reply extends \yii\db\ActiveRecord
      **/
     public function getUser()
     {
-        return $this->hasMany(User::className(),['user_id'=>'user_id']);
+        return $this->hasOne(User::className(),['user_id'=>'user_id']);
     }
     /**
      * {@inheritdoc}

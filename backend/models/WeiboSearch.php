@@ -14,6 +14,7 @@ class WeiboSearch extends Weibo
 
     public $user_name; //定义用户名称,方便搜索
     public $price_url; //定义图片url
+
     /**
      * {@inheritdoc}
      */
@@ -91,14 +92,13 @@ class WeiboSearch extends Weibo
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
-        $query->select(['user.*','weibo.*','reply.*'])
-            ->joinWith(['reply'=>function($query){
-                $query->joinWith('user',true,'left join');
+        $query->select(['reply.*','weibo.*','user.*'])
+            ->joinWith(['reply'=>function($res){
+                $res->joinWith('user',true,'left join');
             }])
             ->andWhere(['weibo.weibo_id'=> $id]);
 
-        print_r($query->createCommand()->getRawSql());
-        print_r($query->asArray()->all());exit();
+//        print_r($dataProvider);exit();
         return $dataProvider;
     }
 
